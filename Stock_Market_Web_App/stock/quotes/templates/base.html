@@ -1,0 +1,140 @@
+{% load static %}
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- jQuery Library -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+    integrity="sha384-vtXRMe3mGCbOeY7l30aIg8H9p3GdeSe4IFlP6G8JMa7o7lXvnz3GFKzPxzJdPfGK" crossorigin="anonymous"></script>
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" type="text/css" href="{% static 'base.css' %}">
+
+    <!-- Popper.js -->
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+    integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+
+    <!-- Bootstrap JS -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
+    integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+
+    {% block home_css %}
+    {% endblock %}
+
+    <title>Fintells</title>
+  </head>
+
+
+<body>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark" style="padding: 15px;">
+
+    <a class="navbar-brand" href="{% url 'home' %}">
+      <img src="{% static 'background/logo.png' %}" alt="Logo" height="40px">
+    </a>
+
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mx-auto justify-content-center">
+        <li class="nav-item active">
+          <a class="nav-link" href="{% url 'home' %}" style="color: #fff;">HOME <span class="sr-only">(current)</span></a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'add_stock' %}" style="color: #fff;">PORTFOLIO</a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'watchlist' %}" style="color: #fff;">WATCHLIST</a>
+        </li>
+
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+            aria-haspopup="true" aria-expanded="false" style="color: #fff;">RESEARCH
+          </a>
+          <div class="dropdown-menu" style="background-color: #171B26;" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item" href="{% url 'news' %}" style="color: #fff;">Market News</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="{% url 'candlestick-chart' %}" style="color: #fff;">Charts</a>
+          </div>
+        </li>
+
+
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'about' %}" style="color: #fff;">ABOUT ME</a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link" href="https://github.com/singhankit10" target="_blank" style="color: #fff;">GITHUB</a>
+        </li>
+
+      </ul>
+
+      <ul class="navbar-nav mr-5">
+        <li class="nav-item dropdown">
+          
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+            aria-haspopup="true" aria-expanded="false" style="color: #fff;">
+
+            <!-- User Icon -->
+            <div class="circle-container">
+              <svg width="28" height="28" viewBox="0 0 28 28" xmlns="http://www.w3.org/2000/svg">
+                <path fill-rule="evenodd"
+                  d="M17.5 9c0 1.14-.3 1.99-.79 2.54-.46.52-1.27.96-2.71.96s-2.25-.44-2.71-.96A3.74 3.74 0 0 1 10.5 9c0-1.14.3-1.99.79-2.54.46-.52 1.27-.96 2.71-.96s2.25.44 2.71.96c.5.55.79 1.4.79 2.54zM19 9c0 2.76-1.45 5-5 5s-5-2.24-5-5 1.45-5 5-5 5 2.24 5 5zm-8 8.5h6c2.04 0 3.1.5 3.76 1.1.69.63 1.11 1.55 1.5 2.8.13.42.04.95-.29 1.4-.33.46-.8.7-1.22.7H7.25c-.43 0-.89-.24-1.22-.7a1.61 1.61 0 0 1-.3-1.4 6.08 6.08 0 0 1 1.51-2.8c.65-.6 1.72-1.1 3.76-1.1zm6-1.5h-6c-4.6 0-5.88 2.33-6.7 4.96-.58 1.89.97 4.04 2.95 4.04h13.5c1.98 0 3.53-2.15 2.95-4.04C22.88 18.33 21.6 16 17 16z"
+                  fill="currentColor"></path>
+              </svg>
+              <div class="circle"></div>
+            </div>
+
+          </a>
+
+          <div class="dropdown-menu" style="left: 50%; transform: translateX(-50%); min-width: 8rem; background-color: #171B26;" aria-labelledby="navbarDropdown">
+            {% if user.is_authenticated %}
+              <a class="dropdown-item" href="{% url 'profile' %}" style="color: #fff;">Profile</a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" href="{% url 'logout' %}" style="color: #fff;">Log Out</a>
+            {% else %}
+              <a class="dropdown-item" href="{% url 'login' %}" style="color: #fff;">Login</a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" href="{% url 'register' %}" style="color: #fff;">Register</a>
+            {% endif %}
+          </div>
+        </li>
+      </ul>
+
+    </nav>
+
+
+  </div>
+
+  	
+    <div class="container">
+      <br/>
+
+      {% if messages %}
+        {% for message in messages %}
+          <div class="alert alert-warning alert-dismissable" role="alert">
+            <button class="close" data-dismiss="alert">
+              <small><sup>x</sup></small>
+            </button>
+            {{ message }} 
+          </div></br>
+        {% endfor %} 
+      {% endif %}
+
+		  {% block content %} 
+		  {% endblock %}
+	</div>
+
+  </body>
+</html>

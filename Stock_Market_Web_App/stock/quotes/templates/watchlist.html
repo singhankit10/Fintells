@@ -1,0 +1,80 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<h1 style="color: white;">My Watchlist</h1>
+{% if watchlist_stocks %}
+<table class="table table-bordered table-striped" style="color: white;">
+    <thead>
+        <tr>
+            <th>Ticker</th>
+            <th>Company Name</th>
+            <th>Latest Price</th>
+            <th>Previous Close</th>
+            <th>Market Cap</th>
+            <th>Volume</th>
+            <th>YTD Change</th>
+            <th>52 Week High</th>
+            <th>52 Week Low</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for stock in watchlist_stocks %}
+        <tr>
+            <td>{{ stock.ticker }}</td>
+            <td>{{ stock.company_name }}</td>
+            <td>${{ stock.latest_price }}</td>
+            <td>${{ stock.previous_close }}</td>
+            <td>${{ stock.market_cap }}</td>
+            <td>{{ stock.latest_volume }}</td>
+            <td>{{ stock.ytd_change }}</td>
+            <td>${{ stock.week52_high }}</td>
+            <td>${{ stock.week52_low }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% else %}
+<p style="color: white;">No stocks in your watchlist yet.</p>
+{% endif %}
+
+<style>
+    body {
+        background-image: url('{% static "background/watchlist_background.jpg" %}');
+        background-size: cover;
+        background-repeat: no-repeat;
+        color: white;
+    }
+
+    h1 {
+        text-align: center;
+        margin-bottom: 30px;
+    }
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+
+    th,
+    td {
+        padding: 10px;
+        text-align: center;
+        color: white;
+        /* Add this line to set text color to white */
+    }
+
+    th {
+        background-color: #333;
+    }
+
+    tr:nth-child(even) {
+        background-color: #555;
+    }
+
+    tr:hover {
+        background-color: #777;
+    }
+</style>
+
+{% endblock %}

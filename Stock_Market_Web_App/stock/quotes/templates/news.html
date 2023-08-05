@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block home_css %}
+	<link rel="stylesheet" type="text/css" href="{% static 'news.css' %}">
+	<title>Market News</title>
+{% endblock %}
+
+{% block content %}
+<div class="bg-layer parallax"></div>
+<div class="bg-layer parallax2"></div>
+<br>
+<h1 style="color: white; text-align: center;">Market News</h1>
+
+<br><br>
+
+<div class="container">
+	<div class="row">
+		{% for article in articles %}
+		<div class="card text-white bg-dark mb-3 mx-auto" style="max-width: 300px;">
+			<a href="{{ article.url }}"><img href="{{ article.url }}" src="{{ article.urlToImage }}"
+					class="card-img-top" alt="{{ article.source.name }}" class="list-group-item"></a>
+			<div class="card-body">
+				<h5 class="card-title">{{ article.title }}</h5>
+				<p class="card-text">{{ article.text }}</p>
+			</div>
+			<ul class="list-group list-group-flush">
+				<em>
+					<li class="list-group-item text-white bg-dark mb-3">{{ article.source.name }}
+				</em>, {{ article.publishedAt }}, <strong>{{ article.sentiment}}</strong></li>
+			</ul>
+			<div class="card-body">
+				<a href="{{ article.url }}" class="btn btn-outline-primary " target="_blank"
+					rel="noopener noreferrer">Read More...</a>
+			</div>
+		</div>
+		{% empty %}
+		<p>No articles found.</p>
+		{% endfor %}
+	</div>
+	
+</div>
+
+<div class="pagination">
+	<span class="step-links">
+		{% if articles.has_previous %}
+		<a href="?page=1">&laquo; first</a>
+		<a href="?page={{ articles.previous_page_number }}">&lsaquo; previous</a>
+		{% endif %}
+
+		<span class="current-page">
+			Page {{ articles.number }} of {{ articles.paginator.num_pages }}.
+		</span>
+
+		{% if articles.has_next %}
+		<a href="?page={{ articles.next_page_number }}">next &rsaquo;</a>
+		<a href="?page={{ articles.paginator.num_pages }}">last &raquo;</a>
+		{% endif %}
+	</span>
+</div>
+{% endblock %}

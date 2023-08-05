@@ -1,0 +1,111 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block home_css %}
+	<link rel="stylesheet" type="text/css" href="{% static 'home.css' %}">
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"
+		integrity="sha384-vtXRMe3mGCbOeY7l30aIg8H9p3GdeSe4IFlP6G8JMa7o7lXvnz3GFKzPxzJdPfGK"
+		crossorigin="anonymous"></script>
+	<link href="http://code.jquery.com/ui/1.10.2/themes/smoothness/jquery-ui.css" rel="stylesheet">
+	<script src="http://code.jquery.com/ui/1.10.2/jquery-ui.js"></script>
+	<script type="text/javascript" src="{% static 'autocomplete.js' %}"></script>
+	
+{% endblock %}
+
+{% block content %}
+
+{% if ticker %}
+	{{ ticker }}
+{% endif %}
+
+<br/>
+		<br><br><br>
+	<div class="centered-links">
+		<a href="{% url 'add_stock' %}" class="link-btn">Portfolio</a>
+		<a href="{% url 'news' %}" class="link-btn">News</a>
+		<a href="{% url 'candlestick-chart' %}" class="link-btn">Charts</a>
+	</div>
+
+	<br><br><br>
+
+	<div style="display: flex; justify-content: left;">
+		<form action="{% url 'home' %}" method="POST" style="display: block; text-align: center;">
+			{% csrf_token %}
+			<div style="display: flex; flex-direction: column; align-items: center;">
+				<input class="form-control form-control-lg rounded-pill mb-2" type="search" placeholder="Search Market Here"
+					aria-label="Search" id="ticker" name="ticker" style="width: 400px; height: 70px; text-align: center; font-size: 22px;">
+				
+				<div id="autocomplete"></div>
+
+				<button class="btn btn-primary mb-2" type="submit">GET QUOTE</button>
+			</div>
+		</form>
+	</div>
+
+	
+	</div>
+<br/>
+
+
+{% if api %}
+	{% if api == "Error..." %}
+		<div class="alert alert-danger" role="alert">
+			<strong>Error: </strong>{{ error }}
+        </div>
+        
+		Your Ticker symbol is invalid, please try again...
+	
+	{% else %}
+		
+		<div style="display: flex; justify-content: right; margin-right: 150px;">
+
+			<div class="card text-white bg-dark mb-3" style="max-width: 30rem;">
+				<div class="card-header text-primary bg-dark mb-3" style="margin-top: -325px;">
+					<h2>QUOTE: {{ api.symbol }}</h2>
+				</div>
+				<div class="card-body text-light bg-secondary">
+					<h3 class="card-title">{{ api.companyName }} <small class="text-muted">({{ api.symbol }})</small></h3>
+					<p class="card-text">
+						<strong>Price:</strong> ${{ api.latestPrice }}<br>
+						<strong>Previous Close:</strong> ${{ api.previousClose }}<br>
+						<strong>Market Cap:</strong> {{ api.marketCap }}<br>
+						<strong>Volume:</strong> {{ api.latestVolume }}<br>
+						<strong>P/E Ratio:</strong> {{ api.peRatio }}<br>
+						<strong>Percent Change:</strong> {{ api.changePercent }}<br>
+						<strong>YTD Change:</strong> {{ api.ytdChange }}<br>
+						<strong>52-Week High:</strong> ${{ api.week52High }}<br>
+						<strong>52-Week Low:</strong> ${{ api.week52Low }}<br>
+						<strong>Open:</strong> ${{ api.open }}<br>
+						<strong>High:</strong> ${{ api.high }}<br>
+						<strong>Low:</strong> ${{ api.low }}<br>
+						<strong>Close:</strong> ${{ api.close }}<br>
+					</p>
+				</div>
+			</div>
+		</div>
+
+
+		
+	{% endif %}
+
+{% endif %}
+
+
+
+<!-- Rendering a random image each time homepage refreshes -->
+<script>
+	var images = [
+		"background/site_background_1.jpg",
+		"background/site_background_2.jpg",
+		"background/site_background_3.jpg"
+	];
+
+	var index = Math.floor(Math.random() * images.length);
+	var selectedImage = images[index];
+
+	document.body.style.backgroundImage = "url('/static/" + selectedImage + "')";
+	document.body.style.backgroundSize = "cover";
+	document.body.style.backgroundRepeat = "no-repeat";
+</script>
+
+{% endblock %}

@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+{% block css %}
+<style>
+    body {
+        background-image: url('/static/users/authentication-background.jpg');
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+</style>
+{% endblock %}
+
+<h2>You have been logged out! </h2>
+    
+<div class="border-top pt-3">
+    <small class="text-muted">
+        <a href="{% url 'login' %}">Log In Again</a>
+    </small>
+</div>
+
+{% endblock %}

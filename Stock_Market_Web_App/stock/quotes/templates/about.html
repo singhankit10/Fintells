@@ -1,0 +1,124 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block home_css %}
+<title>About Me</title>
+{% endblock %}
+
+{% block content %}
+
+<div class="container">
+
+    <div class="profile">
+        <img class="image" src="../../media/Ankit.JPG" alt="Ankit">
+        <h3>Ankit Singh</h3>
+
+        <div class="social_media">
+            <!-- LinkedIn URL -->
+            <a href="https://www.linkedin.com/in/ankit-singh00/" target="_blank"><img src="{% static 'linkedin-icon.svg' %}"
+                    alt="linkedin icon"></a>
+            <!-- Github URL -->
+            <a href="https://github.com/singhankit10" target="_blank"><img src="{% static 'github-icon.svg' %}"
+                    alt="github icon"></a>
+            <!-- Twitter URL -->
+            <a href="https://twitter.com/SupAnkits" target="_blank"><img src="{% static 'twitter-icon.svg' %}"
+                    alt="twitter icon"></a>
+        </div>
+    </div>
+
+    <br>
+
+    <div class="about">
+
+        <p style="color: black;">Hey there! I'm Ankit Singh, your friendly neighborhood coder and all-around tech geek.
+            I'm totally obsessed with Python,
+            Web3, and React – they're like my tech trio dream team!
+            <br><br>
+            When I'm not geeking out with code, I'm unleashing my inner master chef in the kitchen. From whipping up
+            Insta-worthy
+            dishes to nailing those secret family recipes, I'm always up for a flavor adventure!
+            <br><br>
+            And wait, you think I'm all about tech and food? Nah, I've got this need for speed too! You'll catch me
+            binge-watching
+            Formula 1 races, cheering on my favorite drivers like a superfan. The adrenaline rush is REAL!
+            <br><br>
+            So, welcome to my cyber hangout! Here, I'll spill the code beans. Let's dive into this epic digital journey
+            together! 🚀
+            <br><br>
+            Feel free to shoot me a message, and let's rock this tech-savvy world! Peace out! ✌️😎
+        </p>
+    </div>
+</div>
+
+<style>
+    /* internal styles for the about page */
+    body {
+        background-image: url('static/background/about-us-background1.jpg');
+        background-size: cover;
+    }
+
+    .container {
+    max-width: 100%;
+    max-height: 100%;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: rgba(245, 245, 245, 0.55);
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
+    justify-content: center;
+    }
+
+    .about {
+        flex: 1;
+        padding-right: 20px;
+        color: white;
+    }
+
+    .profile {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        color: black;
+    }
+
+    .image {
+        border-radius: 50%;
+        width: 150px;
+        height: 150px;
+        object-fit: cover;
+        object-position: center;
+        margin-bottom: 10px;
+    }
+
+    h1,
+    h3 {
+        margin: 0;
+        font-size: 1.3rem;
+        font-weight: bolder;
+        margin-bottom: 8px;
+    }
+
+    p {
+        margin: 0;
+        font-size: 0.9rem;
+        color: #000000;
+    }
+
+    .social_media {
+        display: flex;
+        justify-content: space-between;
+        width: 80px;
+    }
+
+    .social_media img {
+        width: 20px;
+        height: 20px;
+        border-radius: 0%;
+    }
+</style>
+
+{% endblock %}

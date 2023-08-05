@@ -1,0 +1,69 @@
+.pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    font-size: 1.2rem;
+}
+
+.step-links {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.step-links a {
+    padding: 0.5rem;
+    margin: 0 5px;
+    color: rgb(0, 0, 0);
+    background-color: transparent;
+    text-decoration: none;
+    transition: transform 0.2s ease-in-out;
+}
+
+.current-page {
+    padding: 0.5rem;
+    margin: 0 5px;
+    font-weight: bold;
+}
+
+.step-links a:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+    transform: translateY(-5px);
+}
+
+/* parallax effect css */
+.bg-layer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+}
+
+.parallax {
+    /* The image used */
+    background-image: url("background/news-background-1.jpg");
+
+    /* Set a specific height */
+    background-size: cover;
+    height: 100vh;
+    width: 100%;
+    display: table;
+    background-attachment: fixed;
+}
+
+.parallax2 {
+    /* The image used */
+    background-image: url("background/news-background-2.jpg");
+
+    /* Set a specific height */
+    background-size: cover;
+    height: 100vh;
+    width: 100%;
+    display: table;
+    background-attachment: fixed;
+    top: 100vh;
+}

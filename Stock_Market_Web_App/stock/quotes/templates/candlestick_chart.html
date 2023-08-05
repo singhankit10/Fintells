@@ -1,0 +1,276 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block home_css %}
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highcharts/9.2.1/css/highcharts.css"
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    
+    <script src="https://code.highcharts.com/stock/highstock.js"></script>
+
+    <script src="https://code.highcharts.com/modules/exporting.js"></script>
+    <script src="https://code.highcharts.com/modules/export-data.js"></script>
+    <script src="https://code.highcharts.com/modules/accessibility.js"></script>
+    
+
+{% endblock %}
+
+{% block content %}
+
+<div id="aaplcontainer" style="height: 500px; width: 100%;"></div>
+<div class="spacer"></div>
+<div id="tslacontainer" style="height: 500px; width: 100%;"></div>
+
+
+<script>
+    const AAPLdataURL = '{% url "candlestick-chart-data" %}';
+
+    /**
+     * Load new data depending on the selected min and max
+     */
+    function afterSetExtremes(e) {
+            const { chart } = e.target;
+            chart.showLoading('Loading data from server...');
+            const start = Math.round(e.min);
+            const end = Math.round(e.max);
+            fetch(`${AAPLdataURL}?start=${start}&end=${end}`)
+                .then(res => res.ok && res.json())
+                .then(data => {
+                    const stockData = JSON.parse(data.stock_data);
+                    for (let key in stockData) {
+                        stockData[key][0] = parseInt(stockData[key][0]);
+                    }
+                    chart.series[0].setData(stockData); // update the series data with stockData
+                })
+                .finally(() => chart.hideLoading()); // hide the loading indicator
+        }
+
+
+    fetch(AAPLdataURL)
+        .then(res => res.ok && res.json())
+        .then(data => {
+            console.log(data)
+            const stockData = JSON.parse(data.stock_data); // parse the stock data string into an array
+            for (let key in stockData) {
+                stockData[key][0] = parseInt(stockData[key][0]);
+            }
+            
+            Highcharts.stockChart('aaplcontainer', {
+                chart: {
+                    type: 'candlestick',
+                    zoomType: 'x'
+                },
+
+                navigator: {
+                    adaptToUpdatedData: false,
+                    series: {
+                        data: data
+                    }
+                },
+
+                scrollbar: {
+                    liveRedraw: false
+                },
+
+                title: {
+                    text: 'Apple INC (AAPL) Chart',
+                    align: 'left'
+                },
+
+                subtitle: {
+                    text: 'Displaying chart from 01 September, 2022 to 08 May, 2023',
+                    align: 'left'
+                },
+
+                rangeSelector: {
+                    buttons: [{
+                        type: 'hour',
+                        count: 1,
+                        text: '1h'
+                    }, {
+                        type: 'day',
+                        count: 1,
+                        text: '1d'
+                    }, {
+                        type: 'month',
+                        count: 1,
+                        text: '1m'
+                    }, {
+                        type: 'year',
+                        count: 1,
+                        text: '1y'
+                    }, {
+                        type: 'all',
+                        text: 'All'
+                    }],
+                    inputEnabled: false, // it supports only days
+                    selected: 4 // all
+                },
+
+                xAxis: {
+                    events: {
+                        afterSetExtremes: afterSetExtremes
+                    },
+                    minRange: 3600 * 1000 // one hour
+                },
+
+                yAxis: {
+                    floor: 0
+                },
+                plotOptions: {
+                    candlestick: {
+                        color: '#FF0000',
+                        upColor: '#00FF00'
+                    }
+                },
+
+                series: [{
+                    data: stockData,
+                    dataGrouping: {
+                        enabled: false
+                    }
+                }]
+            });
+        })
+</script>
+
+<style>
+    /* internal styles for the about page */
+    body {
+        background-image: url('../static/background/chart_background.jpg');
+        background-size: cover;
+    }
+    .spacer {
+        height: 50px;
+    }
+</style>
+
+
+
+
+
+<!-- TSLA from here -->
+
+
+
+<script>
+    const TSLAdataURL = '{% url "candlestick-chart-data-tsla" %}';
+
+    /**
+     * Load new data depending on the selected min and max
+     */
+    function afterSetExtremes(e) {
+        const { chart } = e.target;
+        chart.showLoading('Loading data from server...');
+        const start = Math.round(e.min);
+        const end = Math.round(e.max);
+        fetch(`${TSLAdataURL}?start=${start}&end=${end}`)
+            .then(res => res.ok && res.json())
+            .then(data => {
+                const stockData = JSON.parse(data.stock_data);
+                for (let key in stockData) {
+                    stockData[key][0] = parseInt(stockData[key][0]);
+                }
+                chart.series[0].setData(stockData); // update the series data with stockData
+            })
+            .finally(() => chart.hideLoading()); // hide the loading indicator
+    }
+
+
+    fetch(TSLAdataURL)
+        .then(res => res.ok && res.json())
+        .then(data => {
+            console.log(data)
+            const stockData = JSON.parse(data.stock_data); // parse the stock data string into an array
+            for (let key in stockData) {
+                stockData[key][0] = parseInt(stockData[key][0]);
+            }
+
+            Highcharts.stockChart('tslacontainer', {
+                chart: {
+                    type: 'candlestick',
+                    zoomType: 'x'
+                },
+
+                navigator: {
+                    adaptToUpdatedData: false,
+                    series: {
+                        data: data
+                    }
+                },
+
+                scrollbar: {
+                    liveRedraw: false
+                },
+
+                title: {
+                    text: 'Tesla (TSLA) Chart',
+                    align: 'left'
+                },
+
+                subtitle: {
+                    text: 'Displaying chart from 01 October, 2022 to 08 May, 2023',
+                    align: 'left'
+                },
+
+                rangeSelector: {
+                    buttons: [{
+                        type: 'hour',
+                        count: 1,
+                        text: '1h'
+                    }, {
+                        type: 'day',
+                        count: 1,
+                        text: '1d'
+                    }, {
+                        type: 'month',
+                        count: 1,
+                        text: '1m'
+                    }, {
+                        type: 'year',
+                        count: 1,
+                        text: '1y'
+                    }, {
+                        type: 'all',
+                        text: 'All'
+                    }],
+                    inputEnabled: false, // it supports only days
+                    selected: 4 // all
+                },
+
+                xAxis: {
+                    events: {
+                        afterSetExtremes: afterSetExtremes
+                    },
+                    minRange: 3600 * 1000 // one hour
+                },
+
+                yAxis: {
+                    floor: 0
+                },
+                plotOptions: {
+                    candlestick: {
+                        color: '#FF0000',
+                        upColor: '#00FF00'
+                    }
+                },
+
+                series: [{
+                    data: stockData,
+                    dataGrouping: {
+                        enabled: false
+                    }
+                }]
+            });
+        })
+</script>
+
+<style>
+    /* internal styles for the about page */
+    body {
+        background-image: url('/static/background/chart_background.jpg');
+        background-size: cover;
+    }
+</style>
+
+{% endblock %}

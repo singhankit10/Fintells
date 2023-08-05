@@ -1,0 +1,94 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="container">
+  <div>
+    <div class="col-md-8">
+      <h1 class="text-white mb-4">Add Stock to Portfolio</h1>
+      <form action="{% url 'add_stock' %}" method="POST" class="form-inline mb-4">
+        {% csrf_token %}
+        <input class="form-control mr-sm-2" type="search" placeholder="Add Stock to Portfolio"
+          aria-label="Search by ticker" name="ticker">
+        <button class="btn btn-outline-primary my-2 my-sm-0" type="submit">ADD TICKER</button>
+      </form>
+
+      {% if ticker %}
+      <table class="table table-dark">
+        <thead>
+          <tr>
+            <th scope="col">TICKER</th>
+            <th scope="col">COMPANY</th>
+            <th scope="col">STK PRICE</th>
+            <th scope="col">PREV CLOSE</th>
+            <th scope="col">MARKET CAP</th>
+            <th scope="col">VOLUME</th>
+            <th scope="col">YTD CHG</th>
+            <th scope="col">52 WK HIGH</th>
+            <th scope="col">52 WK LOW</th>
+            <th scope="col">REMOVE STK</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for list_item in output %}
+          <tr>
+            <td>{{ list_item.symbol }}</td>
+            <td>{{ list_item.companyName }}</td>
+            <td>${{ list_item.latestPrice }}</td>
+            <td>${{ list_item.previousClose }}</td>
+            <td>${{ list_item.marketCap }}</td>
+            <td>{{ list_item.latestVolume }}</td>
+            <td>{{ list_item.ytdChange }}</td>
+            <td>${{ list_item.week52High }}</td>
+            <td>${{ list_item.week52Low }}</td>
+            <td>
+              {% for item in ticker %}
+              {% if item|lower == list_item.symbol|lower %}
+              <a href="{% url 'delete' item.id %}" class="btn btn-danger btn-sm">Delete</a>
+              {% endif %}
+              {% endfor %}
+            </td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+      {% endif %}
+    </div>
+  </div>
+</div>
+
+<style>
+  /* internal styles for the about page */
+  body {
+    background-image: url('static/background/portfolio-background.jpg');
+    background-size: cover;
+  }
+
+  /* styles for the table */
+  .table th {
+    font-size: 0.8rem;
+    text-transform: uppercase;
+  }
+
+  .btn-outline-primary {
+    border-color: #fff;
+    color: #fff;
+  }
+
+  .btn-outline-primary:hover {
+    background-color: #fff;
+    color: #343a40;
+  }
+
+  .btn-danger {
+    background-color: #dc3545;
+    border-color: #dc3545;
+  }
+
+  .btn-danger:hover {
+    background-color: #c82333;
+    border-color: #bd2130;
+  }
+</style>
+
+{% endblock %}

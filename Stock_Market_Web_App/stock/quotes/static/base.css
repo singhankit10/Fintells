@@ -1,0 +1,38 @@
+.navbar {
+    background-color: transparent !important;
+}
+
+.dropdown-item:hover {
+    background-color: #474747;
+}
+
+.circle-container {
+    position: relative;
+    width: 28px;
+    height: 28px;
+}
+
+.circle {
+    position: absolute;
+    top: -5px;
+    left: -5px;
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    background-color: #FFFFFF;
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+}
+
+.circle-container:hover .circle {
+    opacity: 0.4;
+}
+
+.dropdown-toggle::after {
+    display: none;
+}
+
+.nav-item.dropdown:hover .dropdown-menu {
+    display: block;
+    margin-top: 0;
+}
