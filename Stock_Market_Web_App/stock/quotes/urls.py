@@ -7,6 +7,7 @@ urlpatterns = [
 	path('add_stock.html', views.add_stock, name="add_stock"),
 	path('delete/<stock_id>', views.delete, name="delete"),
 	path('news.html', views.news, name="news"),
+    path('learning.html', views.learning, name="learning"),
     path('watchlist.html', views.watchlist, name="watchlist"),
 	path('candlestick-chart-data/', views.candlestick_chart, name='candlestick-chart'),
     path('candlestick-chart/',views.candlestick_chart_data, name='candlestick-chart-data'),

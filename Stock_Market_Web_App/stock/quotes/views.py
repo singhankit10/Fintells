@@ -133,3 +133,7 @@ def watchlist(request):
     watchlist_stocks = Stock.objects.all()
 
     return render(request, 'watchlist.html', {'watchlist_stocks': watchlist_stocks})
+
+
+def learning(request):
+    return render(request, 'learning.html')

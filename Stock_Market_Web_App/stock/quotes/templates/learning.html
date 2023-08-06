@@ -1,0 +1,206 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block home_css %}
+<title>Learning</title>
+{% endblock %}
+
+{% block content %}
+
+<h1>Learning Section</h1>
+<p>Welcome to our Stock Market Learning Section. Here, you can find articles and videos related to the financial market
+    to enhance your investment knowledge.</p>
+
+<h2>Articles</h2>
+<div class="article">
+    <div class="article-image">
+        <img src="https://www.investopedia.com/thmb/4MXyI1WRNrKV0jNmBuZ81sQKnX8=/750x0/filters:no_upscale():max_bytes(150000):strip_icc():format(webp)/stockmarket.asp-d2f34bb1e91444069bc6e9b24cfdf6e8.jpg" alt="Article Image">
+    </div>
+    <div class="article-content">
+        <h3>Article 1: Introduction to Stock Market</h3>
+        <p>Learn the basics of the stock market and how it works.</p>
+        <a href="https://www.investopedia.com/terms/s/stockmarket.asp" target="_blank">Read More</a>
+    </div>
+</div>
+
+<div class="article">
+    <div class="article-image">
+        <img src="https://www.wallstreetmojo.com/wp-content/uploads/2021/06/Market-Index.jpg" alt="Understanding Stock Market Indices">
+    </div>
+    <div class="article-content">
+        <h3>Article 2: Understanding Stock Market Indices</h3>
+        <p>Explore the various stock market indices and their significance.</p>
+        <a href="https://www.investopedia.com/terms/m/marketindex.asp" target="_blank">Read More</a>
+    </div>
+</div>
+
+<div class="article">
+    <div class="article-image">
+        <img src="https://www.forbes.com/advisor/wp-content/uploads/2020/11/long-term-investing-success.jpg" alt="Tips for Successful Stock Market Investing">
+    </div>
+    <div class="article-content">
+        <h3>Article 3: Tips for Successful Stock Market Investing</h3>
+        <p>Discover useful tips to make successful investment decisions in the stock market.</p>
+        <a href="https://www.investopedia.com/articles/00/082100.asp" target="_blank">Read More</a>
+    </div>
+</div>
+
+<h2>Videos</h2>
+<div class="video">
+    <h3>Video 1: Stock Market Basics</h3>
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/ZCFkWDdmXG8" frameborder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        allowfullscreen></iframe>
+</div>
+
+<div class="video">
+    <h3>Video 2: How to Analyze Stocks</h3>
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/5woO0OmKaJ8" frameborder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        allowfullscreen></iframe>
+</div>
+
+<div class="video">
+    <h3>Video 3: Advanced Market Structure</h3>
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/ifbtPYSGDVQ" frameborder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        allowfullscreen></iframe>
+</div>
+
+
+<style>
+
+    body {
+        font-family: Arial, sans-serif;
+        line-height: 1.6;
+        margin: 0;
+        padding: 0;
+        background: rgb(2, 0, 36);
+        background: linear-gradient(
+            139deg,
+            rgba(2, 0, 36, 1) 0%,
+            rgba(0, 0, 0, 1) 0%,
+            rgba(91, 98, 99, 1) 100%,
+            rgba(0, 212, 255, 1) 100%
+        );
+        color: transparent;
+    }
+
+    .container {
+        max-width: 960px;
+        margin: 0 auto;
+        padding: 20px;
+        background-color: transparent;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        border-radius: 10px;
+    }
+
+    /* Learning Section Styles */
+    h1 {
+        color: #ffffff;
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+    h2 {
+        color: #ffffff;
+        margin-top: 40px;
+    }
+
+    .article {
+    display: flex;
+    align-items: center;
+    border: 1px solid #00a8ff;
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 30px;
+    background-color: transparent;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+    }
+
+    .article-image {
+    flex: 0 0 200px; /* Adjust the width of the image container as needed */
+    margin-right: 20px;
+    margin-top: 10px; /* Add some margin to the top of the image container */
+    }
+
+    .article-image img {
+    width: 100%; /* Make the image inside the container take up the full width */
+    height: 125px; /* Maintain aspect ratio */
+    }
+
+    .article-content {
+        flex: 1;
+    }
+
+    .article h3 {
+        color: #ffffff;
+        margin-bottom: 10px;
+    }
+
+    .article p {
+        color: #ffffff;
+        margin-bottom: 20px;
+    }
+
+    .article a {
+        color: #fff;
+        text-decoration: none;
+        display: inline-block;
+        padding: 10px 20px;
+        background-color: #00a8ff;
+        border-radius: 5px;
+        transition: background-color 0.3s;
+    }
+
+    .article a:hover {
+        background-color: #007bbf;
+        text-decoration: none;
+    }
+
+    p{
+        color: #ffffff;
+    }
+
+    .video {
+        margin-bottom: 30px;
+    }
+
+    .video h3 {
+        color: #ffffff;
+        margin-bottom: 10px;
+    }
+
+    iframe {
+        width: 100%;
+        max-width: 560px;
+        height: 315px;
+        border: none;
+        display: block;
+        margin: 0 auto;
+        box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+    }
+
+    /* Responsive Styles */
+    @media screen and (max-width: 768px) {
+        h1 {
+            font-size: 26px;
+        }
+
+        h2 {
+            font-size: 22px;
+        }
+
+        .article {
+            padding: 15px;
+        }
+
+        iframe {
+            max-width: 100%;
+            height: auto;
+        }
+    }
+
+</style>
+
+{% endblock %} 
