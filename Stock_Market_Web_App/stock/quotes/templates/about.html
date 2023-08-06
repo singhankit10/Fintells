@@ -10,7 +10,7 @@
 <div class="container">
 
     <div class="profile">
-        <img class="image" src="../../media/Ankit.JPG" alt="Ankit">
+        <img class="image" src="../../media/Ankit.JPG" alt="Ankit">                  <!-- my image for about me page -->
         <h3>Ankit Singh</h3>
 
         <div class="social_media">
@@ -30,9 +30,10 @@
 
     <div class="about">
 
+        <!-- Description of myself -->
         <p style="color: black;">Hey there! I'm Ankit Singh, your friendly neighborhood coder and all-around tech geek.
             I'm totally obsessed with Python,
-            Web3, and React – they're like my tech trio dream team!
+            Web3, and React - they're like my tech trio dream team!
             <br><br>
             When I'm not geeking out with code, I'm unleashing my inner master chef in the kitchen. From whipping up
             Insta-worthy
@@ -50,33 +51,40 @@
     </div>
 </div>
 
+
+<!-- internal styles for the about page -->
+
 <style>
-    /* internal styles for the about page */
+
+    /* Set the background image and size for the entire body */
     body {
         background-image: url('static/background/about-us-background1.jpg');
         background-size: cover;
     }
 
+    /* Styles for the container element that holds the content */
     .container {
-    max-width: 100%;
-    max-height: 100%;
-    margin: 0 auto;
-    padding: 20px;
-    background-color: rgba(245, 245, 245, 0.55);
-    border-radius: 5px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    display: flex;
-    flex-direction: column;
-    align-items: center; 
-    justify-content: center;
+        max-width: 100%;
+        max-height: 100%;
+        margin: 0 auto;
+        padding: 20px;
+        background-color: rgba(245, 245, 245, 0.55);
+        border-radius: 5px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
     }
 
+    /* Styles for the about section */
     .about {
         flex: 1;
         padding-right: 20px;
         color: white;
     }
 
+    /* Styles for the profile section */
     .profile {
         flex: 1;
         display: flex;
@@ -85,6 +93,7 @@
         color: black;
     }
 
+    /* Styles for the profile image */
     .image {
         border-radius: 50%;
         width: 150px;
@@ -94,6 +103,7 @@
         margin-bottom: 10px;
     }
 
+    /* Styles for heading elements (h1 and h3) */
     h1,
     h3 {
         margin: 0;
@@ -102,23 +112,27 @@
         margin-bottom: 8px;
     }
 
+    /* Styles for paragraph elements (p) */
     p {
         margin: 0;
         font-size: 0.9rem;
         color: #000000;
     }
 
+    /* Styles for the social media section */
     .social_media {
         display: flex;
         justify-content: space-between;
         width: 80px;
     }
 
+    /* Styles for the social media icons */
     .social_media img {
         width: 20px;
         height: 20px;
         border-radius: 0%;
     }
 </style>
+
 
 {% endblock %}

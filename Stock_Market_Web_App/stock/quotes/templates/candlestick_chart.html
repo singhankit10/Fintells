@@ -3,11 +3,14 @@
 
 {% block home_css %}
 
+    <!-- Load Highcharts CSS from a CDN -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highcharts/9.2.1/css/highcharts.css"
         crossorigin="anonymous" referrerpolicy="no-referrer" />
     
+    <!-- Load Highcharts CSS from a CDN -->
     <script src="https://code.highcharts.com/stock/highstock.js"></script>
 
+    <!-- Load Highcharts module from a CDN -->
     <script src="https://code.highcharts.com/modules/exporting.js"></script>
     <script src="https://code.highcharts.com/modules/export-data.js"></script>
     <script src="https://code.highcharts.com/modules/accessibility.js"></script>
@@ -17,8 +20,11 @@
 
 {% block content %}
 
+<!-- Container for the 'Apple' chart -->
 <div id="aaplcontainer" style="height: 500px; width: 100%;"></div>
+<!-- Spacer between the charts -->
 <div class="spacer"></div>
+<!-- Container for the 'Tesla' chart -->
 <div id="tslacontainer" style="height: 500px; width: 100%;"></div>
 
 
